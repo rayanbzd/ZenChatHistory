@@ -8,13 +8,12 @@ To use ZenChatHistory, you need to have [PacketEvents v2.2.0](https://github.com
 
 ### Installation
 To install ZenChatHistory, just drop the jar file in your `plugins` folder of your velocity proxy.
-For now, ZenChatHistory is not available on any plugin repository, so you have to compile it yourself.
-This plugin is only compatible with Velocity 3.3.0.
+For now, ZenChatHistory is not available on any plugin repository, builds can be found in the release tab of this project.
+This plugin is only compatible with Velocity 3.3.0-SNAPSHOT.
 I will make it compatible for other proxy servers in the future, such as BungeeCord or Waterfall.
 
 
 ### Compilation
-
 ZenChatHistory is built with [Gradle](https://gradle.org/). If you have it installed, just run
 `./gradlew build` in the root project folder.
 Then, you can find the compiled jar in `build/libs/`.
