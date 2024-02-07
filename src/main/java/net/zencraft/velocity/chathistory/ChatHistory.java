@@ -1,7 +1,6 @@
 package net.zencraft.velocity.chathistory;
 
 import com.github.retrooper.packetevents.PacketEvents;
-import com.google.inject.Inject;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
@@ -9,18 +8,15 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.Player;
-import com.velocitypowered.api.proxy.ProxyServer;
 import net.kyori.adventure.text.Component;
-import org.slf4j.Logger;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
 
 @Plugin(
         id = "zenchathistory",
         name = "ZenChatHistory",
-        version = "1.0-SNAPSHOT",
+        version = "1.0.1-SNAPSHOT",
         dependencies = {
             @Dependency(id = "packetevents")
         }
@@ -31,17 +27,6 @@ public class ChatHistory {
     public ConcurrentHashMap<Player,  Deque<Component>> getMessagesCache() {
         return messagesCache;
     }
-    public List<Player> onRestore = new ArrayList<>();
-
-
-    @Inject
-    private Logger logger;
-    public Logger getLogger() {
-        return logger;
-    }
-
-    @Inject
-    private ProxyServer proxy;
 
     private static ChatHistory instance;
     public static ChatHistory getInstance() {
@@ -69,17 +54,11 @@ public class ChatHistory {
     @Subscribe
     public void onServerConnected(ServerConnectedEvent event){
         Player player = event.getPlayer();
-        Deque<Component> componentList = getMessagesCache().get(event.getPlayer());
-        if(componentList != null){
-            if(!onRestore.contains(player)){
-                onRestore.add(player);
-            }
-            for(Component component : componentList){
+        Deque<Component> componentJsonList = getMessagesCache().get(event.getPlayer());
+        if(componentJsonList != null){
+            for(Component component : componentJsonList){
                 player.sendMessage(component);
             }
-            proxy.getScheduler().buildTask(this, () -> {
-                onRestore.remove(player);
-            }).delay(50, TimeUnit.MILLISECONDS).schedule();
         }
     }
 
