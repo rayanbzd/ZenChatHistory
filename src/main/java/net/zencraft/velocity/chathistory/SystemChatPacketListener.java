@@ -31,7 +31,7 @@ public class SystemChatPacketListener extends PacketListenerAbstract {
         }else if(event.getPacketType() == PacketType.Play.Server.CHAT_MESSAGE){
             WrapperPlayServerChatMessage chatMessage = new WrapperPlayServerChatMessage(event);
             Component chatComponent = null;
-            if(chatMessage.getMessage() instanceof ChatMessage_v1_19_3){
+            if(chatMessage.getMessage() instanceof ChatMessage_v1_19_3 && ((ChatMessage_v1_19_3) chatMessage.getMessage()).getUnsignedChatContent().isPresent()){
                 chatComponent = ((ChatMessage_v1_19_3) chatMessage.getMessage()).getUnsignedChatContent().get();
             }
             if(chatComponent == null){
