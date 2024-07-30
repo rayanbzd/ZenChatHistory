@@ -24,7 +24,9 @@ public class SystemChatPacketListener extends PacketListenerAbstract {
         if(event.getUser().getClientVersion().isOlderThan(ClientVersion.V_1_20_2))return;
         if (event.getPacketType() == PacketType.Play.Server.SYSTEM_CHAT_MESSAGE) {
             ComponentHolder component = ComponentHolder.read((ByteBuf) event.getByteBuf(), ProtocolVersion.MINECRAFT_1_20_3);
-            ChatHistory.getInstance().addMessage(player, component.getComponent());
+            boolean isActionBar = ((ByteBuf)event.getByteBuf()).readBoolean();
+            if (!isActionBar)
+                ChatHistory.getInstance().addMessage(player, component.getComponent());
         }
     }
 
