@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Plugin(
         id = "zenchathistory",
         name = "ZenChatHistory",
-        version = "1.0.1-SNAPSHOT",
+        version = "1.0.2-SNAPSHOT",
         dependencies = {
             @Dependency(id = "packetevents")
         }
