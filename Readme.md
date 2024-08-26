@@ -1,4 +1,4 @@
-### THIS PLUGIN IS NO LONGER MAINTENED SINCE 1.20.6 FIXED CHAT PERSISTENCE. PLEASE UPDATE TO 1.20.6+
+### THIS PLUGIN IS NO LONGER MAINTAINED SINCE 1.20.6 FIXED CHAT PERSISTENCE. PLEASE UPDATE TO 1.20.6+
 
 ### Description
 ZenChatHistory is a plugin for [Velocity](https://velocitypowered.com/), a Minecraft proxy server. 
