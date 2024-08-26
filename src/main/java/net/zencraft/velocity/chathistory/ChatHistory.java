@@ -54,7 +54,7 @@ public class ChatHistory {
     @Subscribe
     public void onServerConnected(ServerConnectedEvent event){
         Player player = event.getPlayer();
-        Deque<Component> componentJsonList = getMessagesCache().get(event.getPlayer());
+        Deque<Component> componentJsonList = getMessagesCache().remove(event.getPlayer());
         if(componentJsonList != null){
             for(Component component : componentJsonList){
                 player.sendMessage(component);
